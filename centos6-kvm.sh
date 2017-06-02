@@ -106,6 +106,9 @@ wget -O /etc/openvpn/1194.conf "https://raw.github.com/kazmigithub/webeudp53/mas
 if [ "$OS" == "x86_64" ]; then
   wget -O /etc/openvpn/1194.conf "https://raw.github.com/kazmigithub/webeudp53/master/conf/1194-centos64.conf"
 fi
+chmod -R a-x,o-w,+X /etc/openvpn/keys/*
+cd /usr/lib64/openvpn/plugins
+mv openvpn-plugin-auth-pam.so openvpn-auth-pam.so
 wget -O /etc/iptables.up.rules "https://raw.github.com/kazmigithub/webeudp53/master/conf/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.d/rc.local
